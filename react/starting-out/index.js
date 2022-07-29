@@ -12,4 +12,10 @@
  * Same as above but using React instead.
  * Declarative way to program.
  */
-ReactDOM.render(<h1 className="header">Hello React!</h1>, document.getElementById("root"));
+ReactDOM.render(
+	<div className="header">
+		<h1>Hello React!</h1>
+		<p>Welcome</p>
+	</div>,
+	document.getElementById("root")
+);
