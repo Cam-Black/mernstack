@@ -21,7 +21,7 @@
 // 	</div>
 // )
 
-	//Navbar challenge: https://youtu.be/bMknfKXIFA8?t=2292
+//Navbar challenge: https://youtu.be/bMknfKXIFA8?t=2292
 const navbar = (
 		<nav>
 			<h1>My Website</h1>
