@@ -13,14 +13,27 @@
  * Declarative way to program.
  */
 
-const page = (
+// const page = (
 	//In order to return multiple HTML elements, must be wrapped inside a parent element.
-	<div className="header">
-		<h1>Hello React!</h1>
-		<p>Welcome</p>
-	</div>
-)
+// 	<div className="header">
+// 		<h1>Hello React!</h1>
+// 		<p>Welcome</p>
+// 	</div>
+// )
+
+	//Navbar challenge: https://youtu.be/bMknfKXIFA8?t=2292
+const navbar = (
+		<nav>
+			<h1>My Website</h1>
+			<ul>
+				<li>Pricing</li>
+				<li>About</li>
+				<li>Contact</li>
+			</ul>
+		</nav>
+	);
+
 ReactDOM.render(
-	page,
+	navbar,
 	document.getElementById("root")
 );
