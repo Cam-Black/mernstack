@@ -75,3 +75,5 @@ const body = (
 ReactDOM.createRoot(document.getElementById('root')).render(
 	body
 );
+
+//Current timestamp in react tutorial: https://youtu.be/bMknfKXIFA8?t=2778
