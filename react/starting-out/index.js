@@ -12,10 +12,15 @@
  * Same as above but using React instead.
  * Declarative way to program.
  */
-ReactDOM.render(
+
+const page = (
+	//In order to return multiple HTML elements, must be wrapped inside a parent element.
 	<div className="header">
 		<h1>Hello React!</h1>
 		<p>Welcome</p>
-	</div>,
+	</div>
+)
+ReactDOM.render(
+	page,
 	document.getElementById("root")
 );
