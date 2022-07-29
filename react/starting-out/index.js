@@ -22,18 +22,56 @@
 // )
 
 //Navbar challenge: https://youtu.be/bMknfKXIFA8?t=2292
-const navbar = (
-		<nav>
-			<h1>My Website</h1>
+// const navbar = (
+// 		<nav>
+// 			<h1>My Website</h1>
+// 			<ul>
+// 				<li>Pricing</li>
+// 				<li>About</li>
+// 				<li>Contact</li>
+// 			</ul>
+// 		</nav>
+// 	);
+
+/**
+ * Static page challenge: https://youtu.be/bMknfKXIFA8?t=2744
+ */
+const body = (
+		<main>
+			<nav>
+				<ul>
+					<li>Home</li>
+					<li>About</li>
+					<li>Contact</li>
+				</ul>
+			</nav>
+			<h1>Welcome to Cam's Hub</h1>
+			<p>We got everything you need:</p>
 			<ul>
-				<li>Pricing</li>
-				<li>About</li>
-				<li>Contact</li>
+				<li>Games</li>
+				<li>Food</li>
+				<li>Beer</li>
 			</ul>
-		</nav>
+		</main>
 	);
 
-ReactDOM.render(
-	navbar,
-	document.getElementById("root")
+/**
+ * Cannot appendChild to root:
+ * index.js:55 Uncaught TypeError: Failed to execute 'appendChild' on 'Node': parameter 1 is not of type 'Node'.
+ */
+// document.getElementById("root").appendChild(body);
+
+/**
+ * ReactDOM.render is no longer supported in React 18.
+ * Using createRoot as per new version docs.
+ *
+ * ReactDOM.render(
+ * 	body,
+ * 	document.getElementById("root")
+ * );
+ */
+
+
+ReactDOM.createRoot(document.getElementById('root')).render(
+	body
 );
