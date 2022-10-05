@@ -16,7 +16,6 @@ const getData = () => {
                 resultBlock.appendChild(fact);
                 i++;
             }
-            // return JSON.stringify(res.data, null, 2);
         })
         .catch(err => console.error(err));
 }
@@ -34,7 +33,7 @@ function App() {
 
     useEffect(() => {
         getData().then(data => {
-            setJsonString(() => data);
+            setJsonString(() => data || "Data not found!");
         })
     }, []);
 
