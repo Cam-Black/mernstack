@@ -1,46 +1,41 @@
 import {useState, useEffect} from "react";
 import axios from "axios";
 
-const getData = () => {
-    return axios.get("https://catfact.ninja/facts")
-        .then(res => {
-            console.log(res.data.data);
-            let i = 1;
-            const resultBlock = document.createElement("div");
-            document.querySelector("#root").appendChild(resultBlock);
-
-            for (let info of res.data.data) {
-                const fact = document.createElement("p");
-                fact.innerText = `Fact ${i}: ${info.fact}`;
-                resultBlock.appendChild(fact);
-                i++;
-            }
+const getData = async () => {
+    return axios.get("https://randomuser.me/api")
+        .then(({data}) => {
+            console.log(data);
+            return JSON.stringify(data, null, 2);
+            // let i = 1;
+            // const resultBlock = document.getElementById("resultBlock")
+            // document.querySelector("#root").appendChild(resultBlock);
+            //
+            // for (let info of res.data.data) {
+            //     const fact = document.createElement("p");
+            //     fact.innerText = `Fact ${i}: ${info.fact}`;
+            //     resultBlock.appendChild(fact);
+            //     i++;
+            // }
         })
         .catch(err => console.error(err));
 }
 
-function IncreaseCounter() {
-    const [counter, setCounter] = useState(0);
-
-    return (
-        <button onClick={() => setCounter(prevState => prevState + 1)}>Clicks: {counter}</button>
-    )
-}
-
 function App() {
     const [jsonString, setJsonString] = useState("");
+    const [counter, setCounter] = useState(0);
 
     useEffect(() => {
         getData().then(data => {
-            setJsonString(() => data || "Data not found!");
+            setJsonString(data ?? "");
         })
     }, []);
 
     return (
         <div className="App">
             <h1>Hello CodeSandbox</h1>
-            <IncreaseCounter/>
-            <p>{jsonString}</p>
+            <button onClick={() => setCounter(prevState => prevState + 1)}>Clicks: {counter}</button>
+            <pre>{jsonString}</pre>
+            <div id="resultBlock"></div>
         </div>
     );
 }

@@ -3,6 +3,7 @@
   <component name="ProjectModuleManager">
     <modules>
       <module fileurl="file://$PROJECT_DIR$/.idea/react.iml" filepath="$PROJECT_DIR$/.idea/react.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../../VideoGameJournal/src/main/resources/static/.idea/static.iml" filepath="$PROJECT_DIR$/../../VideoGameJournal/src/main/resources/static/.idea/static.iml" />
     </modules>
   </component>
 </project>
