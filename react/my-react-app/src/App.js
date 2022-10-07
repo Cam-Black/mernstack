@@ -4,7 +4,6 @@ import axios from "axios";
 const getData = async () => {
     return axios.get("https://randomuser.me/api")
         .then(({data}) => {
-            console.log(data);
             return data;
         })
         .catch(err => console.error(err));
@@ -32,15 +31,16 @@ function App() {
     return (<div className="App">
             <h1>Hello CodeSandbox</h1>
             <button onClick={() => setCounter(prevState => prevState + 1)}>Clicks: {counter}</button>
-            <>
-                {displayData.map((userInfo, id) => (
+            <div>
+                {displayData.map((userInfo, id) =>
+                    (
                         <div key={id}>
                             <p>{getFullName(userInfo)}</p>
                             <img alt="Profile pic" src={getImgSrc(userInfo)}/>
                         </div>
                     )
                 )}
-            </>
+            </div>
         </div>
     )
 }
