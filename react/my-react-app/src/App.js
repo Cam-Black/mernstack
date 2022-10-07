@@ -1,43 +1,48 @@
-import {useState, useEffect} from "react";
+import {useEffect, useState} from "react";
 import axios from "axios";
 
 const getData = async () => {
     return axios.get("https://randomuser.me/api")
         .then(({data}) => {
             console.log(data);
-            return JSON.stringify(data, null, 2);
-            // let i = 1;
-            // const resultBlock = document.getElementById("resultBlock")
-            // document.querySelector("#root").appendChild(resultBlock);
-            //
-            // for (let info of res.data.data) {
-            //     const fact = document.createElement("p");
-            //     fact.innerText = `Fact ${i}: ${info.fact}`;
-            //     resultBlock.appendChild(fact);
-            //     i++;
-            // }
+            return data;
         })
         .catch(err => console.error(err));
 }
 
+const getFullName = (userInfo) => {
+    const {name: {first, last}} = userInfo;
+    return `${first} ${last}`;
+}
+
+const getImgSrc = (userInfo) => {
+    const {picture: {large}} = userInfo;
+    return `${large}`;
+}
+
 function App() {
-    const [jsonString, setJsonString] = useState("");
+    const [displayData, setDisplayData] = useState([]);
     const [counter, setCounter] = useState(0);
 
     useEffect(() => {
         getData().then(data => {
-            setJsonString(data ?? "");
+            setDisplayData(data.results);
         })
     }, []);
-
-    return (
-        <div className="App">
+    return (<div className="App">
             <h1>Hello CodeSandbox</h1>
             <button onClick={() => setCounter(prevState => prevState + 1)}>Clicks: {counter}</button>
-            <pre>{jsonString}</pre>
-            <div id="resultBlock"></div>
+            <>
+                {displayData.map((userInfo, id) => (
+                        <div key={id}>
+                            <p>{getFullName(userInfo)}</p>
+                            <img alt="Profile pic" src={getImgSrc(userInfo)}/>
+                        </div>
+                    )
+                )}
+            </>
         </div>
-    );
+    )
 }
 
 export default App;
