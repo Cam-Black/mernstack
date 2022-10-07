@@ -1,8 +1,8 @@
 import {useEffect, useState} from "react";
 import axios from "axios";
 
-const getData = async () => {
-    return axios.get("https://randomuser.me/api")
+const getData = (pageNumber) => {
+    return axios.get(`https://randomuser.me/api?page=${pageNumber}`)
         .then(({data}) => {
             return data;
         })
@@ -22,27 +22,34 @@ const getImgSrc = (userInfo) => {
 function App() {
     const [displayData, setDisplayData] = useState([]);
     const [counter, setCounter] = useState(0);
+    const [nextPageNumber, setNextPageNumber] = useState(1);
 
     useEffect(() => {
-        getData().then(data => {
-            setDisplayData(data.results);
+        getData(nextPageNumber).then(data => {
+            let newData;
+            for (let i = 0; i < data.results.length; i++) {
+                 newData = [...displayData, data.results[i]];
+            }
+            console.log(newData);
+            setDisplayData(newData);
+
         })
-    }, []);
+    }, [nextPageNumber]);
     return (<div className="App">
-            <h1>Hello CodeSandbox</h1>
-            <button onClick={() => setCounter(prevState => prevState + 1)}>Clicks: {counter}</button>
-            <div>
-                {displayData.map((userInfo, id) =>
-                    (
-                        <div key={id}>
-                            <p>{getFullName(userInfo)}</p>
-                            <img alt="Profile pic" src={getImgSrc(userInfo)}/>
-                        </div>
-                    )
-                )}
-            </div>
+        <h1>Hello CodeSandbox</h1>
+        <span>
+            <button onClick={() => setCounter(prevState => prevState + 1)}>Increase Count</button>
+            <button onClick={() => setCounter(prevState => prevState - 1)}>Decrease Count</button>
+        </span>
+        <p>{counter}</p>
+        <button onClick={() => setNextPageNumber(prevState => prevState + 1)}>Add User Profile</button>
+        <div>
+            {displayData.map((userInfo, id) => (<div key={id}>
+                <p>{getFullName(userInfo)}</p>
+                <img alt="Profile pic" src={getImgSrc(userInfo)}/>
+            </div>))}
         </div>
-    )
+    </div>)
 }
 
 export default App;
