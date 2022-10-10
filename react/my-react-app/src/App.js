@@ -35,6 +35,9 @@ function App() {
 
         })
     }, [nextPageNumber]);
+
+    const reversed = displayData.slice().reverse();
+
     return (<div className="App">
         <h1>Hello CodeSandbox</h1>
         <span>
@@ -44,7 +47,7 @@ function App() {
         <p>{counter}</p>
         <button onClick={() => setNextPageNumber(prevState => prevState + 1)}>Add User Profile</button>
         <div>
-            {displayData.map((userInfo, id) => (<div key={id}>
+            {   reversed.map((userInfo, id) => (<div key={id}>
                 <p>{getFullName(userInfo)}</p>
                 <img alt="Profile pic" src={getImgSrc(userInfo)}/>
             </div>))}
